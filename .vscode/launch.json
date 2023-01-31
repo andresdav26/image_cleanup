@@ -1,0 +1,50 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "dataset",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/dataset.py",
+            "args": [
+                "--src_path",
+                "/home/adguerrero/ia_nas/datasets/image_cleanup/",
+            ],
+        },
+        {
+            "name": "train",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "args": [
+                "--train-flag",
+                "True",
+                "--train_path",
+                "/home/adguerrero/ia_nas/datasets/image_cleanup/train/",
+                "--test_path",
+                "/home/adguerrero/ia_nas/datasets/image_cleanup/test/",
+            ],
+        },
+        {
+            "name": "validation",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "args": [
+                "--train-flag",
+                "False",
+                "--cuda-device-no", "-1" ,
+                // "--val_path", "/home/adguerrero/ia_nas/datasets/image_cleanup/val/fontfsm_noisef_re.png", 
+                // "--val_path", "/home/adguerrero/ia_nas/datasets/image_cleanup/val/202209140809023774_fehgflio_1.png", 
+                // "--val_path", "/home/adguerrero/ia_nas/datasets/image_cleanup/val/fontfre_noisec_re.png", 
+                // "--val_path", "/home/adguerrero/ia_nas/datasets/image_cleanup/val/0120220906s88019117027001.png", 
+                // "--val_path", "/home/adguerrero/ia_nas/datasets/image_cleanup/val/30445006_861_0002.png", 
+                "--val_path", "/home/adguerrero/ia_nas/datasets/image_cleanup/val/",
+                
+            ],
+        },
+    ]
+}
