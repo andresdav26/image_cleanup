@@ -9,14 +9,14 @@ def validation(args):
     device = torch.device("cuda" if args.cuda_device_no >= 0 else 'cpu')
 
     model = Model()
-    checkpoint = torch.load(args.save_model + "best2.pth")
+    checkpoint = torch.load(args.models_path)
     model.load_state_dict(checkpoint['state_dict'])
     model = model.to(device)
 
     img_paths = [p for p in Path(args.val_path).glob('*') if p.suffix in ('.png', '.jpg', '.jpeg')] # noise
     for path in img_paths:
         t0 = time.time()
-        input_image = imload(path).to(device)
+        input_image = imload(path,cropsize=512).to(device)
 
         with torch.no_grad():
             model.eval()

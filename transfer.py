@@ -45,7 +45,7 @@ def calc_Gram_Loss(features, targets, weights=None):
     return gram_loss
 
    
-def training(args):
+def retraining(args):
     device = torch.device("cuda" if args.cuda_device_no >= 0 else 'cpu')
     print('Using device:', device)
     
@@ -66,6 +66,10 @@ def training(args):
     # Transform Network
     model = Model()
     model = model.to(device)
+
+    # Load state_dict
+    checkpoint = torch.load(args.pretrain)
+    model.load_state_dict(checkpoint['state_dict'])
 
     # Optimizer
     optimizer = torch.optim.Adam(params=model.parameters())

@@ -1,8 +1,8 @@
 import os
 import argparse
-import time
 
 from train import training
+from transfer import retraining
 from val import validation
 
 def build_parser():
@@ -23,6 +23,9 @@ def build_parser():
 
     parser.add_argument('--train-flag', type=str2bool,
                     help='Train flag', required=True)
+    
+    parser.add_argument('--pretrain-flag', type=str2bool,
+                    help='pretrained flag in order to transfer learning', required=True)
 
     parser.add_argument('--epochs', type=int,
                     help='epochs amount', default=100)
@@ -60,8 +63,11 @@ def build_parser():
     parser.add_argument('--val_path', type=str,
                     help="clean image path")
     
-    parser.add_argument('--save_model', type=str,
-                    help='Save model', default='./trained_models/')
+    parser.add_argument('--models_path', type=str,
+                    help='Save trained models', default='./trained_models/')
+
+    parser.add_argument('--pretrain', type=str,
+                    help='pretrained models', default='./trained_models/base/best2.pth')
     
     parser.add_argument('--output_path', type=str,
                     help='output image path', default='./results/')
@@ -75,6 +81,8 @@ if __name__ == '__main__':
 
     if args.train_flag:
         transform_network = training(args)
+    elif args.pretrain_flag:
+        retraining(args)
     else:
         validation(args)
         
