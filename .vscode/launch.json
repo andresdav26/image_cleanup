@@ -22,12 +22,14 @@
             "args": [
                 "--train-flag",
                 "True",
+                "--pretrain-flag",
+                "False",
                 "--train_path",
-                "/home/adguerrero/ia_nas/datasets/image_cleanup/train/",
+                "/home/adguerrero/ia_nas/datasets/image_cleanup/train3/",
                 "--test_path",
-                "/home/adguerrero/ia_nas/datasets/image_cleanup/test/",
+                "/home/adguerrero/ia_nas/datasets/image_cleanup/test3/",
                 "--models_path",
-                "/home/adguerrero/Documents/ia_image_cleanup/trained_models/base/best.pth",
+                "/home/adguerrero/Documents/ia_image_cleanup/trained_models/snr/snr1.pth",
             ],
         },
         {
@@ -64,6 +66,7 @@
                 "/home/adguerrero/Documents/ia_image_cleanup/trained_models/base/best2.pth",
                 "--output_path",
                 "/home/adguerrero/Documents/ia_image_cleanup/results/snr/",
+                "--cropsize", "256", 
             ],
         },
     ]

@@ -1,4 +1,4 @@
-import os
+import math
 from PIL import Image
 
 import torch
@@ -71,5 +71,12 @@ def imload(path, cropsize=None):
     transformer = get_transformer(cropsize)
     return transformer(Image.open(path).convert("L")).unsqueeze(0)
 
-
+def padd(Img,d):
+    r = Img.shape[2] # rows
+    c = Img.shape[3] # cols
+    padr = math.ceil(r/d)*d -r 
+    padc = math.ceil(c/d)*d -c
+    pad_f = transforms.Pad([0,0,padc,padr], fill=1.0) 
+    imNoisy_padd = pad_f(Img)
+    return imNoisy_padd, r, c, padr, padc
 

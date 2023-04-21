@@ -52,12 +52,12 @@ def training(args):
     # Dataset
     n_train_paths = [p for p in Path(args.train_path + "noise/").glob('*') if p.suffix in ('.png', '.jpg', '.jpeg')] # noise
     c_train_paths = [p for p in Path(args.train_path + "clean/").glob('*') if p.suffix in ('.png', '.jpg', '.jpeg')] # clean
-    train_dataset = ImageFolder(n_train_paths, c_train_paths, get_transformer(args.cropsize), use_cache=False)
+    train_dataset = ImageFolder(n_train_paths, c_train_paths, get_transformer(), use_cache=False)
     trainloader = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch, shuffle=False, num_workers=0)
 
     n_test_paths = [p for p in Path(args.test_path + "noise/").glob('*') if p.suffix in ('.png', '.jpg', '.jpeg')] # noise
     c_test_paths = [p for p in Path(args.test_path + "clean/").glob('*') if p.suffix in ('.png', '.jpg', '.jpeg')] # clean
-    test_dataset = ImageFolder(n_test_paths, c_test_paths, get_transformer(args.cropsize), use_cache=False)
+    test_dataset = ImageFolder(n_test_paths, c_test_paths, get_transformer(), use_cache=False)
     testloader = torch.utils.data.DataLoader(test_dataset, batch_size=args.batch, shuffle=False, num_workers=0)
     
     # Loss network
